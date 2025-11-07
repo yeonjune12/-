@@ -8,62 +8,22 @@
   :root {
     --bg: #0b0f14;
     --panel: #111827;
-    --panel-2: #0f172a;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
+    --text: #111827;
+    --muted: #6b7280;
     --accent: #8b5cf6;
-    --accent-2: #06b6d4;
     --btn: #1f2937;
-    --ok: #22c55e;
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body {
-    margin:0; background: radial-gradient(1200px 800px at 80% -10%, rgba(139,92,246,.25), transparent 60%),
-                     radial-gradient(800px 1000px at -10% 80%, rgba(6,182,212,.18), transparent 60%),
-                     var(--bg);
-    color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    position: relative;
   }
-  .wrap { min-height: 100%; display:flex; align-items:center; justify-content:center; padding: 24px; }
-  .card { width: min(860px, 96vw); background: rgba(255,255,255,0.16); color: #111827; border: 1px solid rgba(255,255,255,0.35);backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2); box-shadow: 0 20px 80px rgba(0,0,0,.25); }
-  .header { position: absolute; top: 20px; left: 24px; display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; color: #fff; background: rgba(0,0,0,0.3); padding: 6px 12px; border-radius: 8px;}
-  .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px; }
-  .brand .dot { width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow:0 0 22px var(--accent); }
-  .body { padding: 72px 28px 28px 28px; }
-  .center { text-align:center; }
-  .title { font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; line-height:1.2; }
-  .subtitle { margin-top: 10px; color: var(--muted); }
-  .btn {
-    display:inline-flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
-    background: linear-gradient(180deg, var(--accent), #6d28d9);
-    border: none; color:white; padding: 14px 20px; border-radius: 12px; font-weight: 700; letter-spacing:.2px;
-    transition: transform .08s ease, filter .2s ease; box-shadow: 0 10px 30px rgba(139,92,246,.35);
-  }
-  .btn:hover { filter: brightness(1.07); }
-  .btn:active { transform: translateY(1px); }
-  .btn.secondary { background: linear-gradient(180deg, #334155, #0f172a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
-  .qbox { margin-top: 16px; padding:18px; background: var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:14px; }
-  .qtitle { font-size: clamp(18px, 2.5vw, 22px); font-weight:800; }
-  .opts { display:grid; grid-template-columns: 1fr; gap:10px; margin-top:14px; }
-  .opt { background: var(--btn); border:1px solid rgba(255,255,255,.07); padding:12px 14px; border-radius:12px; cursor:pointer; text-align:left; }
-  .opt:hover { border-color: rgba(139,92,246,.6); }
-  .footer { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; color: var(--muted); }
-  .steps { font-variant-numeric: tabular-nums; }
-  .pill { display:inline-block; padding: 4px 10px; border-radius:999px; background: rgba(139,92,246,.15); color:#e9d5ff; font-size:12px; border:1px solid rgba(139,92,246,.35); }
-  .result { display:grid; grid-template-columns: 330px 1fr; gap:18px; }
-  @media (max-width: 780px) { .result { grid-template-columns: 1fr; } }
-  .portrait { background: var(--panel-2); border-radius:16px; padding:14px; border:1px solid rgba(255,255,255,.08); text-align:center; }
-  .portrait img { width:100%; height:auto; border-radius:12px; object-fit:cover; aspect-ratio: 3/4; border:1px solid rgba(255,255,255,.06); }
-  .name { margin-top:10px; font-size:20px; font-weight:800; }
-  .desc { color: var(--muted); }
-  .badgebar { display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 0 0; }
-  .badge { font-size:12px; padding:5px 9px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); }
-  .hr { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin: 18px 0; }
-  .mutetext { color: var(--muted); font-size: 12px; }
-  /* 전체화면 실제 배경 이미지: repo 루트의 `이미지/배경.jpg` 사용 */
-  /* 기존 body 선언 뒤에 추가 또는 교체 */
-  body{ position: relative; }
 
+  /* 배경 이미지: 원본 색감 그대로 */
   body::before{
     content:"";
     position: fixed;
@@ -71,284 +31,185 @@
     z-index: 0;
     pointer-events: none;
     background: url("이미지/배경.png") center/cover no-repeat fixed;
-    filter: brightness(1.0) saturate(1.0);
   }
-  
-  .card{ position: relative; z-index: 1; }
 
+  .wrap { min-height: 100%; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card {
+    width: min(860px, 96vw);
+    background: rgba(255,255,255,0.25);  /* 반투명 화이트 */
+    color: #111827;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 18px;
+    box-shadow: 0 20px 80px rgba(0,0,0,.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    position: absolute;
+    top: 20px; left: 24px;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; letter-spacing: .3px;
+    color: #111827;
+  }
+  .brand .dot { width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow:0 0 10px var(--accent); }
+
+  .body { padding: 80px 28px 28px 28px; text-align: center; }
+  .title { font-size: clamp(22px, 3.5vw, 30px); font-weight: 800; line-height:1.2; }
+  .subtitle { margin-top: 10px; color: var(--muted); }
+  .btn {
+    display:inline-flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, var(--accent), #6d28d9);
+    border:none; color:white; padding:14px 20px; border-radius:12px;
+    font-weight:700; cursor:pointer;
+    box-shadow:0 10px 30px rgba(139,92,246,.35);
+    transition:filter .2s ease;
+  }
+  .btn:hover { filter: brightness(1.07); }
+
+  .qbox { margin-top: 16px; padding:18px; background: #f9fafb; border:1px solid rgba(0,0,0,.05); border-radius:14px; text-align:left; }
+  .qtitle { font-size: clamp(18px, 2.5vw, 22px); font-weight:800; }
+  .opts { display:grid; gap:10px; margin-top:14px; }
+  .opt { background:#e5e7eb; border:none; padding:12px 14px; border-radius:12px; cursor:pointer; text-align:left; }
+  .opt:hover { background:#ddd6fe; }
+  .footer { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; color:#6b7280; }
+  .pill { padding:4px 10px; border-radius:999px; background:rgba(139,92,246,.15); color:#6d28d9; font-size:12px; }
+
+  .result { display:grid; grid-template-columns:330px 1fr; gap:18px; }
+  @media (max-width:780px){ .result{grid-template-columns:1fr;} }
+  .portrait img { width:100%; border-radius:12px; border:1px solid rgba(0,0,0,.1); }
+
+  .name { margin-top:10px; font-size:20px; font-weight:800; }
+  .desc { color:#6b7280; }
+  .badgebar { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .badge { font-size:12px; padding:5px 9px; border-radius:999px; background:#f3f4f6; border:1px solid #e5e7eb; }
+  .hr { height:1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,.1), transparent); margin:18px 0; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="card" id="app">
     <div class="header">
-      <div class="brand"><span class="dot"></span> 트릭컬 최애 사도 뽑기</div
+      <div class="brand"><span class="dot"></span> 트릭컬 최애 사도 진단</div>
     </div>
-    <div class="body" id="view">
-      <!-- Dynamic content injected by JS -->
-    </div>
+    <div class="body" id="view"></div>
   </div>
 </div>
 
 <script>
-// ------------------------
-// 데이터 정의
-// ------------------------
-
-// 1) 설문 문항
+// 질문지와 캐릭터 데이터 동일
 const QUESTIONS = [
-  {
-    id: 'personality',
-    title: 'Q1. 친구가 위험에 빠졌을 때, 당신은 어떻게 행동하나요?',
-    options: [
-      { label: '미친 듯이 돌진해 상황을 바꾼다', value: '광기' },
-      { label: '모두를 위해 자신을 희생한다', value: '우울' },
-      { label: '감정을 누르고 냉정하게 판단한다', value: '냉정' },
-      { label: '그를 믿고 주저 없이 달려간다', value: '순수' },
-      { label: '모두를 격려하며 분위기를 이끈다', value: '활발' },
-    ],
-  },
-  {
-    id: 'archetype',
-    title: 'Q2. 당신이 이상적으로 되고 싶은 모습은?',
-    options: [
-      { label: '혼돈 속에서도 웃는 자유인', value: '트릭스터' },
-      { label: '진실을 탐구하는 관찰자', value: '현자' },
-      { label: '정의를 위해 싸우는 리더', value: '영웅' },
-      { label: '억압에 맞서는 반항자', value: '반역자' },
-      { label: '상처 입은 이를 보듬는 보호자', value: '보호자' },
-    ],
-  },
-  {
-    id: 'role',
-    title: 'Q3. 전투가 시작되면, 당신은 어떤 역할이 편합니까?',
-    options: [
-      { label: '가장 먼저 적을 베어 치는 공격수', value: '딜러' },
-      { label: '아군의 상태를 살피며 지원', value: '서포터' },
-      { label: '한 걸음 앞에서 파티를 지키는 방패', value: '탱커' },
-    ],
-  },
-  {
-    id: 'attack',
-    title: 'Q4. 힘의 근원은 어디서 온다고 보나요?',
-    options: [
-      { label: '육체의 단련과 감각', value: '물리' },
-      { label: '지식, 감정, 그리고 마력', value: '마법' },
-    ],
-  },
-  {
-    id: 'line',
-    title: 'Q5. 전장에서 가장 편한 위치는?',
-    options: [
-      { label: '적과 정면 대치하는 전열', value: '전열' },
-      { label: '전황을 읽고 균형을 잡는 중열', value: '중열' },
-      { label: '멀리서 관찰하고 지원하는 후열', value: '후열' },
-    ],
-  },
+  {id:'personality',title:'Q1. 친구가 위험에 빠졌을 때, 당신은 어떻게 행동하나요?',options:[
+    {label:'미친 듯이 돌진해 상황을 바꾼다',value:'광기'},
+    {label:'모두를 위해 자신을 희생한다',value:'우울'},
+    {label:'감정을 누르고 냉정하게 판단한다',value:'냉정'},
+    {label:'그를 믿고 주저 없이 달려간다',value:'순수'},
+    {label:'모두를 격려하며 분위기를 이끈다',value:'활발'},
+  ]},
+  {id:'archetype',title:'Q2. 당신이 이상적으로 되고 싶은 모습은?',options:[
+    {label:'혼돈 속에서도 웃는 자유인',value:'트릭스터'},
+    {label:'진실을 탐구하는 관찰자',value:'현자'},
+    {label:'정의를 위해 싸우는 리더',value:'영웅'},
+    {label:'억압에 맞서는 반항자',value:'반역자'},
+    {label:'상처 입은 이를 보듬는 보호자',value:'보호자'},
+  ]},
+  {id:'role',title:'Q3. 전투가 시작되면, 당신은 어떤 역할이 편합니까?',options:[
+    {label:'가장 먼저 적을 베어 치는 공격수',value:'딜러'},
+    {label:'아군의 상태를 살피며 지원',value:'서포터'},
+    {label:'한 걸음 앞에서 파티를 지키는 방패',value:'탱커'},
+  ]},
+  {id:'attack',title:'Q4. 힘의 근원은 어디서 온다고 보나요?',options:[
+    {label:'육체의 단련과 감각',value:'물리'},
+    {label:'지식, 감정, 그리고 마력',value:'마법'},
+  ]},
+  {id:'line',title:'Q5. 전장에서 가장 편한 위치는?',options:[
+    {label:'적과 정면 대치하는 전열',value:'전열'},
+    {label:'전황을 읽고 균형을 잡는 중열',value:'중열'},
+    {label:'멀리서 관찰하고 지원하는 후열',value:'후열'},
+  ]},
 ];
 
-// 2) 캐릭터 데이터 예시
-// 실제 서비스 시, 아래 목록을 트릭컬 월드 기준으로 확장/수정하면 된다.
-// 속성 키: 성격, 원형, 역할, 공격, 배치
 const CHARACTERS = [
-  {
-    id: 'lucifer',
-    name: '루시퍼',
-    img: '이미지/루시퍼.jpg',
-    desc: '냉정한 판단으로 전황을 읽는 엘리트 서포터.',
-    traits: { 성격: '냉정', 원형: '현자', 역할: '서포터', 공격: '마법', 배치: '후열' },
-  },
-  {
-    id: 'aria',
-    name: '아리아',
-    img: '이미지/아리아.jpg',
-    desc: '전열에서 리듬을 주도하는 카리스마 딜러.',
-    traits: { 성격: '활발', 원형: '영웅', 역할: '딜러', 공격: '물리', 배치: '전열' },
-  },
-  {
-    id: 'noah',
-    name: '노아',
-    img: '이미지/노아.jpg',
-    desc: '상처를 끌어안고 아군을 지키는 수호의 방패.',
-    traits: { 성격: '우울', 원형: '보호자', 역할: '탱커', 공격: '물리', 배치: '중열' },
-  },
-  {
-    id: 'joker',
-    name: '조커',
-    img: '이미지/조커.jpg',
-    desc: '혼돈을 유머로 비트는 트릭스터.',
-    traits: { 성격: '광기', 원형: '트릭스터', 역할: '딜러', 공격: '마법', 배치: '중열' },
-  },
-  {
-    id: 'eve',
-    name: '이브',
-    img: '이미지/이브.jpg',
-    desc: '선의를 지키는 순수한 힐 서포터.',
-    traits: { 성격: '순수', 원형: '보호자', 역할: '서포터', 공격: '마법', 배치: '후열' },
-  },
+  {id:'lucifer',name:'루시퍼',img:'이미지/루시퍼.png',desc:'냉정한 판단으로 전황을 읽는 엘리트 서포터.',traits:{성격:'냉정',원형:'현자',역할:'서포터',공격:'마법',배치:'후열'}},
+  {id:'aria',name:'아리아',img:'이미지/아리아.png',desc:'전열에서 리듬을 주도하는 카리스마 딜러.',traits:{성격:'활발',원형:'영웅',역할:'딜러',공격:'물리',배치:'전열'}},
+  {id:'noah',name:'노아',img:'이미지/노아.png',desc:'상처를 끌어안고 아군을 지키는 수호의 방패.',traits:{성격:'우울',원형:'보호자',역할:'탱커',공격:'물리',배치:'중열'}},
+  {id:'joker',name:'조커',img:'이미지/조커.png',desc:'혼돈을 유머로 비트는 트릭스터.',traits:{성격:'광기',원형:'트릭스터',역할:'딜러',공격:'마법',배치:'중열'}},
+  {id:'eve',name:'이브',img:'이미지/이브.png',desc:'선의를 지키는 순수한 힐 서포터.',traits:{성격:'순수',원형:'보호자',역할:'서포터',공격:'마법',배치:'후열'}},
 ];
 
-// 3) 유사도 가중치 (완전일치 없을 때 사용)
-const WEIGHTS = { 성격: 5, 원형: 4, 역할: 3, 공격: 2, 배치: 1 };
+const WEIGHTS = {성격:5, 원형:4, 역할:3, 공격:2, 배치:1};
+let answers={}, step='start';
+const view=document.getElementById('view');
+function html(s,...v){return s.reduce((a,b,i)=>a+b+(v[i]??''),'');}
+function setView(n){view.innerHTML=n;}
 
-// ------------------------
-// 상태
-// ------------------------
-let step = 'start';
-let answers = {}; // {personality, archetype, role, attack, line}
-
-// ------------------------
-// 렌더링 유틸
-// ------------------------
-const view = document.getElementById('view');
-function html(strings, ...values){
-  return strings.reduce((acc, s, i) => acc + s + (values[i] ?? ''), '');
-}
-function setView(node){
-  view.innerHTML = node;
-}
-
-// ------------------------
-// 화면들
-// ------------------------
 function renderStart(){
   setView(html`
     <div class="center">
-      <div class="title">꾜주님! 의 최애 사도를 알려드릴게요!</div>
+      <div class="title">꾜주님! 의 업무를 도와드릴 사도를 알려드릴게요!</div>
       <div class="subtitle">버튼을 누르면 5문항 설문이 시작됩니다.</div>
-      <div style="margin-top:18px">
-        <button class="btn" onclick="startQuiz()">사도 모집 시작하기</button>
-      </div>
+      <div style="margin-top:18px"><button class="btn" onclick="startQuiz()">사도 모집 시작하기</button></div>
       <div class="hr"></div>
-      <div class="mutetext">© 팬메이드 설문 데모 </div>
+      <div class="mutetext">© 팬메이드 설문 데모</div>
     </div>
   `);
 }
 
-function renderQuestion(index){
-  const total = QUESTIONS.length;
-  const q = QUESTIONS[index];
+function renderQuestion(i){
+  const q=QUESTIONS[i];
   setView(html`
     <div class="qbox">
-      <div class="pill">${index+1} / ${total}</div>
+      <div class="pill">${i+1} / ${QUESTIONS.length}</div>
       <div class="qtitle" style="margin-top:8px">${q.title}</div>
       <div class="opts">
-        ${q.options.map((op, i) => `
-          <button class="opt" onclick="choose(${index}, ${i})">${op.label}</button>
-        `).join('')}
-      </div>
-      <div class="footer">
-        <div class="steps">원리: 심리 → 속성 매핑 → 캐릭터 유사도 계산</div>
-        <button class="btn secondary" onclick="restart()">처음으로</button>
+        ${q.options.map((op,j)=>`<button class="opt" onclick="choose(${i},${j})">${op.label}</button>`).join('')}
       </div>
     </div>
   `);
 }
 
 function renderResult(match){
-  const { character, score, profile } = match;
-  const tags = [
-    `성격: ${profile.성격}`,
-    `원형: ${profile.원형}`,
-    `역할: ${profile.역할}`,
-    `공격: ${profile.공격}`,
-    `배치: ${profile.배치}`,
-  ];
+  const {character,score,profile}=match;
   setView(html`
     <div class="result">
       <div class="portrait">
-        <div class="desc" style="margin-bottom:8px">${character.desc}</div>
-        <img alt="${character.name}" src="${character.img}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'800\'><rect width=\'100%\' height=\'100%\' fill=\'%23111827\'/><text x=\'50%\' y=\'55%\' font-size=\'42\' fill=\'%23cbd5e1\' font-family=\'Arial\' text-anchor=\'middle\'>이미지 없음</text></svg>'"/>
+        <img src="${character.img}" alt="${character.name}"/>
         <div class="name">${character.name}</div>
+        <div class="desc">${character.desc}</div>
       </div>
       <div>
         <div class="title">당신의 최애 사도 후보</div>
-        <div class="subtitle">응답을 바탕으로 가장 유사한 사도를 추천합니다. (유사도 가중 합: ${score})</div>
-        <div class="badgebar">${tags.map(t => `<span class='badge'>${t}</span>`).join('')}</div>
+        <div class="subtitle">유사도 가중 합: ${score}</div>
+        <div class="badgebar">
+          ${Object.entries(profile).map(([k,v])=>`<span class="badge">${k}: ${v}</span>`).join('')}
+        </div>
         <div class="hr"></div>
-        <div class="qbox">
-          <div class="qtitle">추천 근거</div>
-          <p class="desc" style="margin-top:8px">
-            각 문항은 트릭컬의 메타 속성으로 변환되었습니다. 동일 속성은 더 높은 점수를 갖습니다.
-            완전 일치가 없을 경우 유사도(성격>원형>역할>공격>배치) 가중치로 근사 매칭합니다.
-          </p>
-          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-            ${Object.entries(WEIGHTS).map(([k,v]) => `<span class="badge">${k}: +${v}</span>`).join('')}
-          </div>
-        </div>
-        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn" onclick="restart()">설문 다시 시작하기</button>
-          <button class="btn secondary" onclick="startQuiz()">다른 결과 보기</button>
-        </div>
+        <button class="btn" onclick="restart()">설문 다시 시작하기</button>
       </div>
     </div>
   `);
 }
 
-// ------------------------
-// 로직
-// ------------------------
-function startQuiz(){
-  step = 'quiz';
-  answers = {}; // 초기화
-  renderQuestion(0);
+function startQuiz(){answers={};renderQuestion(0);}
+function choose(i,j){
+  const q=QUESTIONS[i];answers[q.idMap??{
+    personality:'성격',archetype:'원형',role:'역할',attack:'공격',line:'배치'
+  }[q.id]]=q.options[j].value;
+  if(i+1<QUESTIONS.length)renderQuestion(i+1);
+  else renderResult(matchCharacter(answers));
 }
-function choose(index, optIndex){
-  const q = QUESTIONS[index];
-  const chosen = q.options[optIndex];
-  // 속성 저장. 내부 키를 트릭컬 속성 한글로 통일
-  const mapKey = {
-    personality: '성격',
-    archetype: '원형',
-    role: '역할',
-    attack: '공격',
-    line: '배치',
-  }[q.id];
-  answers[mapKey] = chosen.value;
-
-  const next = index + 1;
-  if (next < QUESTIONS.length) {
-    renderQuestion(next);
-  } else {
-    // 결과 계산 및 표시
-    const match = matchCharacter(answers);
-    step = 'result';
-    renderResult(match);
+function restart(){renderStart();}
+function matchCharacter(p){
+  const exact=CHARACTERS.find(c=>Object.entries(c.traits).every(([k,v])=>p[k]===v));
+  if(exact)return{character:exact,score:scoreFor(exact,p),profile:p};
+  let best=null,bestScore=-1;
+  for(const c of CHARACTERS){
+    const s=scoreFor(c,p);if(s>bestScore){bestScore=s;best=c;}
   }
+  return{character:best,score:bestScore,profile:p};
 }
-function restart(){
-  step = 'start';
-  answers = {};
-  renderStart();
-}
-
-function matchCharacter(profile){
-  // 1) 완전 일치 우선
-  const exact = CHARACTERS.find(c =>
-    Object.entries(c.traits).every(([k,v]) => profile[k] === v)
-  );
-  if (exact) return { character: exact, score: scoreFor(exact, profile), profile };
-
-  // 2) 가중 유사도
-  let best = null;
-  let bestScore = -Infinity;
-  for (const c of CHARACTERS){
-    const s = scoreFor(c, profile);
-    if (s > bestScore){ bestScore = s; best = c; }
-  }
-  return { character: best, score: bestScore, profile };
-}
-function scoreFor(c, profile){
-  let sum = 0;
-  for (const key of Object.keys(WEIGHTS)){
-    if (c.traits[key] === profile[key]) sum += WEIGHTS[key];
-  }
-  return sum;
-}
-
-// 초기 화면 렌더
+function scoreFor(c,p){return Object.keys(WEIGHTS).reduce((s,k)=>s+(c.traits[k]===p[k]?WEIGHTS[k]:0),0);}
 renderStart();
 </script>
 </body>
 </html>
-
