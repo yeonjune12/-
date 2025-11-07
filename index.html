@@ -61,14 +61,21 @@
   .hr { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin: 18px 0; }
   .mutetext { color: var(--muted); font-size: 12px; }
   /* 전체화면 실제 배경 이미지: repo 루트의 `이미지/배경.jpg` 사용 */
+  /* 기존 body 선언 뒤에 추가 또는 교체 */
+  body{ position: relative; }
+
   body::before{
     content:"";
     position: fixed;
     inset: 0;
-    z-index: -1; /* 모든 UI 뒤 */
-    background: url("이미지/배경.png") center/cover no-repeat fixed;
+    z-index: 0;           /* 핵심 */
+    pointer-events: none;
+    background: url("이미지/배경.png") center/cover no-repeat fixed; /* 확장자/대소문자 점검 */
     filter: brightness(.6) saturate(1.05);
   }
+
+  .card{ position: relative; z-index: 1; }
+
 </style>
 </head>
 <body>
