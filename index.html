@@ -25,7 +25,7 @@
     color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   }
   .wrap { min-height: 100%; display:flex; align-items:center; justify-content:center; padding: 24px; }
-  .card { width: min(860px, 96vw); background: #ffffff; color: #111827; border: 1px solid rgba(0,0,0,.1); border-radius: 18px; box-shadow: 0 20px 80px rgba(0,0,0,.25); }
+  .card { width: min(860px, 96vw); background: rgba(255,255,255,0.16); color: #111827; border: 1px solid rgba(255,255,255,0.35);backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2); box-shadow: 0 20px 80px rgba(0,0,0,.25); }
   .header { padding: 28px 28px 0 28px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.3px; }
   .brand .dot { width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow:0 0 22px var(--accent); }
@@ -65,13 +65,13 @@
   body{ position: relative; }
 
   body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: url("이미지/배경.png") center/cover no-repeat fixed;
-  filter: brightness(1.15) saturate(1.2);   /* ← 더 밝고 선명하게 */
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url("이미지/배경.png") center/cover no-repeat fixed;
+    filter: brightness(1.18) saturate(1.30);   /* 더 밝고 선명하게 */
   }
   
   .card{ position: relative; z-index: 1; }
@@ -82,8 +82,7 @@
 <div class="wrap">
   <div class="card" id="app">
     <div class="header">
-      <div class="brand"><span class="dot"></span> 트릭컬 최애 사도 뽑기</div>
-      <div class="mutetext">클라이언트 측 설문 · 저장 안 함</div>
+      <div class="brand"><span class="dot"></span> 트릭컬 최애 사도 뽑기</div
     </div>
     <div class="body" id="view">
       <!-- Dynamic content injected by JS -->
@@ -216,12 +215,12 @@ function renderStart(){
   setView(html`
     <div class="center">
       <div class="title">꾜주님! 의 업무를 도와드릴 사도를 알려드릴게요!</div>
-      <div class="subtitle">버튼을 누르면 5문항 설문이 시작됩니다. 결과는 기기에 저장되지 않습니다.</div>
+      <div class="subtitle">버튼을 누르면 5문항 설문이 시작됩니다.</div>
       <div style="margin-top:18px">
         <button class="btn" onclick="startQuiz()">사도 모집 시작하기</button>
       </div>
       <div class="hr"></div>
-      <div class="mutetext">© 팬메이드 설문 데모 · GitHub Pages 배포용 단일 파일</div>
+      <div class="mutetext">© 팬메이드 설문 데모 </div>
     </div>
   `);
 }
